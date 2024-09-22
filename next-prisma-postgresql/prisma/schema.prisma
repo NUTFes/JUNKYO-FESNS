@@ -7,8 +7,18 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model users {
-  id         Int      @id @default(autoincrement())
-  name       String
-  created_at DateTime @db.Timestamp(6)
+model dtb_areas {
+  area_id         Int         @id @db.SmallInt
+  area_name       String
+  area_coordinate String
+  dtb_posts       dtb_posts[]
+}
+
+model dtb_posts {
+  id         Int        @id
+  content    String
+  area_id    Int?       @db.SmallInt
+  created_at DateTime   @default(now()) @db.Timestamptz(6)
+  updated_at DateTime   @default(now()) @db.Timestamptz(6)
+  dtb_areas  dtb_areas? @relation(fields: [area_id], references: [area_id], onDelete: NoAction, onUpdate: NoAction)
 }
