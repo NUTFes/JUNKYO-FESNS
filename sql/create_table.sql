@@ -5,7 +5,7 @@ CREATE TABLE dtb_areas (
 );
 
 CREATE TABLE dtb_posts (
-    id integer PRIMARY KEY,                                     -- ID
+    id integer NOT NULL PRIMARY KEY,                                     -- ID
     content text NOT NULL,                                      -- 投稿テキスト
     area_id smallint REFERENCES dtb_areas (area_id),            -- エリアID(外部キー)
     created_at TIMESTAMPTZ NOT NULL DEFAULT CURRENT_TIMESTAMP,  -- 作成日時
