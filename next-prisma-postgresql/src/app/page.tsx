@@ -1,4 +1,10 @@
 import Image from "next/image";
+import dynamic from 'next/dynamic';
+
+// LeafletMapはクライアントサイドのみでレンダリングされるように設定
+const LeafletMap = dynamic(() => import('./components/LeafletMap'), {
+  ssr: false, // サーバーサイドレンダリングを無効化
+});
 
 export default function Home() {
   return (
@@ -22,6 +28,11 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
+
+        <div>
+          <h1>カスタムイメージにマーカーを設置</h1>
+          <LeafletMap />
+        </div>
 
         <div className="flex gap-4 items-center flex-col sm:flex-row">
           <a
