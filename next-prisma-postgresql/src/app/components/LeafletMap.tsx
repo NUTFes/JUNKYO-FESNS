@@ -27,7 +27,7 @@ export default function LeafletMap() {
     const marker = L.marker([250, 250], { draggable: true }).addTo(map); // 画像の中央にマーカーを配置
 
     // マーカーがドラッグされたときのイベント
-    marker.on('dragend', function (e) {
+    marker.on('dragend', function () {
       const position = marker.getLatLng();
       console.log(`Marker dragged to: ${position.lat}, ${position.lng}`);
     });

@@ -8,8 +8,8 @@ services:
     ports:
       - "3000:3000"
       - "5555:5555"
-    working_dir:
-      - /app/next-prisma-postgresql
+    # working_dir:
+    #   - /app/next-prisma-postgresql
     command:
       - npm run dev
     volumes:
