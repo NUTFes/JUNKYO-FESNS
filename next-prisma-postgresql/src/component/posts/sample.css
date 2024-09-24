@@ -1,0 +1,42 @@
+.box {
+    height: 57px;
+    width: 73%;
+}
+
+.box .comment-main {
+    background-color: #ff7f56;
+    border-radius: 20px;
+    height: 57px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 70%;
+    margin: 10px;
+
+}
+
+input::placeholder {
+    text-align: center;
+    color: #ffac90;
+}
+
+.box .rectangle {
+    background-color: #ffffff;
+    border-radius: 30px;
+    height: 49px;
+    position: relative;
+    width: 98%;
+    margin: 3px;
+}
+
+.button {
+    margin: 10px;
+    width: 15%;
+    height: 15%;
+}
+
+.post-flex {
+
+    display: flex;
+
+}
