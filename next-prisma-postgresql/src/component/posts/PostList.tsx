@@ -43,7 +43,7 @@ export default function PostList() {
             return (
               <>
                 <ListItem key={post.id}>
-                  <ListItemText primary={post.context} />
+                  <ListItemText primary={post.content} />
                 </ListItem>
                 <Divider />
               </>
