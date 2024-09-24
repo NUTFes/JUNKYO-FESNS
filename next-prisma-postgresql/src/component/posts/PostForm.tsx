@@ -6,6 +6,8 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { Card, CardContent } from "@mui/material";
+import React from "react";
+import "./sample.css";
 
 type Post = {
   content: string;
@@ -47,15 +49,32 @@ export default function PostForm() {
       <Card>
         <CardContent>
           <Stack spacing={2}>
-            <TextField
+            {/* <TextField
               id="content"
-              label="本文"
+              label="コメント"
               variant="outlined"
+
               {...register("content", { required: true })}
-            />
-            <Button variant="contained" type="submit" disabled={!isValid}>
-              Contained
-            </Button>
+            /> */}
+            <div className="box">
+              <div className="comment-main">
+                <input
+                  id="content"
+                  className="rectangle"
+                  placeholder=" フェス、たのしんでる？"
+                  {...register("content", { required: true })}//inoutタグから情報取得
+                />
+              </div>
+            </div>
+            {/* <Button variant="contained" type="submit" disabled={!isValid}> */}
+            {/* Contained */}
+            {/* </Button> */}
+
+            <div>
+              <input className="button" type="image" src="/images/icon_full.svg"></input>
+            </div>
+
+
           </Stack>
         </CardContent>
       </Card>
