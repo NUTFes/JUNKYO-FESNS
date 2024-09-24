@@ -1,7 +1,7 @@
 "use client"; // クライアントコンポーネントとして指定
 
 import { useEffect } from 'react';
-import L from 'leaflet';
+import L, { LeafletMouseEvent } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
@@ -37,14 +37,12 @@ export default function LeafletMap() {
     // マップの表示範囲を画像サイズに合わせる
     map.fitBounds(imageBounds);
 
-    // ドラッグ可能なマーカーの追加
-    const marker = L.marker([250, 250], { draggable: true }).addTo(map); // 画像の中央にマーカーを配置
-
-    // マーカーがドラッグされたときのイベント
-    marker.on('dragend', function () {
-      const position = marker.getLatLng();
-      console.log(`Marker dragged to: ${position.lat}, ${position.lng}`);
-    });
+    let marker;
+    function onMapClick(e: LeafletMouseEvent) {
+      marker = L.marker(e.latlng).addTo(map);
+      marker.bindPopup("川",{autoClose:false}).openPopup();
+    }
+    map.on('click', onMapClick);
 
     return () => {
       // マップのクリーンアップ
