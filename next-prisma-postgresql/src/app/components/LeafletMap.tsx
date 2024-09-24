@@ -32,7 +32,7 @@ export default function LeafletMap() {
     const imageBounds: L.LatLngBoundsExpression = [[0, 0], [1629, 2403]]; // カスタムイメージのサイズに合わせる
 
     // 画像タイルを背景に設定
-    L.imageOverlay('http://localhost:3000/images/map.png', imageBounds).addTo(map);
+    L.imageOverlay('/images/map.png', imageBounds).addTo(map);
 
     // マップの表示範囲を画像サイズに合わせる
     map.fitBounds(imageBounds);
