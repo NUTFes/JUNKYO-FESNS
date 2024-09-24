@@ -15,11 +15,12 @@ export default function LeafletMap() {
     });
 
     // 画像のサイズを定義 (幅, 高さ)
-    const imageBounds: L.LatLngBoundsExpression = [[0, 0], [2403, 1629]]; // カスタムイメージのサイズに合わせる
+    const imageBounds: L.LatLngBoundsExpression = [[0, 0], [500, 500]]; // カスタムイメージのサイズに合わせる
 
     // 画像タイルを背景に設定
-    // L.imageOverlay('http://localhost:3000/', imageBounds).addTo(map);
-    L.imageOverlay('/images/map.png', imageBounds).addTo(map);
+    // L.imageOverlay('next-prisma-postgresql/src/public/map.png', imageBounds).addTo(map);
+    L.imageOverlay('http://localhost:3000/images/map.png', imageBounds).addTo(map);
+    // L.imageOverlay('/Users/ycn/Workspace/NUTMEG/Hackason/JUNKYO-FESNS/next-prisma-postgresql/src/public/map.png', imageBounds).addTo(map);
 
     // マップの表示範囲を画像サイズに合わせる
     map.fitBounds(imageBounds);
