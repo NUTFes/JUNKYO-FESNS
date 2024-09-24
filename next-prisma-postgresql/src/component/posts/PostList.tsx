@@ -12,7 +12,7 @@ import Post from "@/app/posts/page";
 
 type Post = {
   id: number;
-  context: string;
+  content: string;
   user_id: number;
   area_id: number;
   created_at: Date;
