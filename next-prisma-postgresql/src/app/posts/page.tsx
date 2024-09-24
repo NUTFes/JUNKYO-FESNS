@@ -1,5 +1,5 @@
-import PostForm from "@/component/posts/PostForm";
-import PostList from "@/component/posts/PostList";
+import PostForm from "@/components/posts/PostForm";
+import PostList from "@/components/posts/PostList";
 import { Box } from "@mui/material";
 import { Suspense } from "react";
 
