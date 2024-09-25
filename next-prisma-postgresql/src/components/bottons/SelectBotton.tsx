@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
+import { Areas } from '@/constant/area';
 
 export default function SelectButton() {
   const [selectedValue, setSelectedValue] = useState<string>('');
@@ -24,12 +25,12 @@ export default function SelectButton() {
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>新講義棟エリア</MenuItem>
-        <MenuItem value={20}>事務棟エリア</MenuItem>
-        <MenuItem value={30}>図書館棟エリア</MenuItem>
-        <MenuItem value={40}>電気棟エリア</MenuItem>
-        <MenuItem value={50}>屋外ステージエリア</MenuItem>
-        <MenuItem value={60}>機械建設棟エリア</MenuItem>
+        <MenuItem value={1}>新講義棟エリア</MenuItem>
+        <MenuItem value={2}>事務棟エリア</MenuItem>
+        <MenuItem value={3}>図書館棟エリア</MenuItem>
+        <MenuItem value={4}>電気棟エリア</MenuItem>
+        <MenuItem value={5}>屋外ステージエリア</MenuItem>
+        <MenuItem value={6}>機械建設棟エリア</MenuItem>
       </Select>
     </FormControl>
   );

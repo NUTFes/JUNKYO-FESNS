@@ -20,9 +20,8 @@ export async function POST(req: NextRequest) {
   try {
     const post = await prisma.dtb_posts.create({
       data: {
-        // id: 1,
         content: body.content,
-        area_id: 1,
+        area_id: body.area_id,
         created_at: new Date(),
         updated_at: new Date(),
       },
