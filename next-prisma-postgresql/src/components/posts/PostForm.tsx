@@ -4,11 +4,8 @@ import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import React from "react";
 import "./sample.css";
-// import { Card, CardContent, Select, MenuItem } from "@mui/material";
 import { Select, MenuItem, styled } from "@mui/material";
-// // import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
 import { Areas } from '@/constant/Area';
-// import SelectButtonSample from '@/components/bottons/Select-sample';
 
 type Post = {
   content: string;
