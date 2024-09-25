@@ -1,10 +1,7 @@
 import PostForm from "@/components/posts/PostForm";
-import PostList from "@/components/posts/PostList";
-// import SelectButton from '@/components/bottons/SelectBotton';
 import { Box } from "@mui/material";
 import { Suspense } from "react";
 import dynamic from 'next/dynamic';
-// import SelectButtonSample from '@/components/bottons/Select-sample';
 
 // LeafletMapはクライアントサイドのみでレンダリングされるように設定
 const LeafletMap = dynamic(() => import('../components/map/LeafletMap'), {
@@ -19,14 +16,9 @@ export default async function Post() {
         <div>
           <LeafletMap />
         </div>
-        <div className="">
-          {/* <SelectButton /> */}
-          {/* <SelectButtonSample /> */}
-        </div>
         <Box>
           <Suspense fallback={<div>Loading...</div>}>
             <PostForm />
-            <PostList />
           </Suspense>
         </Box>
       </main>

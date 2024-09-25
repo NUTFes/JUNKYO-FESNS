@@ -24,6 +24,19 @@
   background-color: #cd4930;  /* 吹き出しの矢印の背景色 */
   box-shadow: 0 0 0 0;
 }
+.leaflet-container a.leaflet-popup-close-button {
+  color: white;
+  height: 0px;
+  width: 0px;
+}
+.leaflet-popup-close-button {
+  color: white;
+  height: 0px;
+  width: 0px;
+}
 .leaflet-popup-close-button > span{
   color: white;
+  font-size: 0;
+  height: 0px;
+  width: 0px;
 }
