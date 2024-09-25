@@ -9,6 +9,13 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
 
+type Post = {
+  id: number;
+  content: string;
+  user_id: number;
+  area_id: number;
+  created_at: Date;
+};
 
 // ここでSWRを使ってデータを取得している
 const usePostSwr = () => {
@@ -21,6 +28,45 @@ const usePostSwr = () => {
     isError: error,
   };
 };
+// エリアの座標配列
+const Areas = [
+  {
+    id: 1,
+    name: "新講義棟エリア",
+    lat: [700, 1000],
+    lng: [270, 640],
+  },
+  {
+    id: 2,
+    name: "事務棟エリア",
+    lat: [700, 1000],
+    lng: [680, 930],
+  },
+  {
+    id: 3,
+    name: "図書館棟エリア",
+    lat: [700, 1000],
+    lng: [970, 1220],
+  },
+  {
+    id: 4,
+    name: "電気棟エリア",
+    lat: [700, 1100],
+    lng: [1270, 1500],
+  },
+  {
+    id: 5,
+    name: "屋外ステージエリア",
+    lat: [840, 1240],
+    lng: [1560, 1880],
+  },
+  {
+    id: 6,
+    name: "機械建設棟エリア",
+    lat: [1160, 1320],
+    lng: [1930, 2100],
+  },
+];
 
 
 export default function LeafletMap() {
@@ -70,6 +116,47 @@ export default function LeafletMap() {
       marker.bindPopup(postText(),{autoClose:false}).openPopup();
     }
     map.on('click', onMapClick);
+    
+    // 投稿コンテンツをマーカーとして追加する
+    function dropMarkers(){
+      if(data && data.length > 0){
+        let x = Math.random() * 100;
+        let y = Math.random() * 100;
+        data.map((post: Post) => {
+          switch(post.area_id){
+            case 1:
+              x = Math.random() * (Areas[0].lng[1] - Areas[0].lng[0]) + Areas[0].lng[0];
+              y = Math.random() * (Areas[0].lat[1] - Areas[0].lat[0]) + Areas[0].lat[0];
+              break;
+            case 2:
+              x = Math.random() * (Areas[1].lng[1] - Areas[1].lng[0]) + Areas[1].lng[0];
+              y = Math.random() * (Areas[1].lat[1] - Areas[1].lat[0]) + Areas[1].lat[0];
+              break;
+            case 3:
+              x = Math.random() * (Areas[2].lng[1] - Areas[2].lng[0]) + Areas[2].lng[0];
+              y = Math.random() * (Areas[2].lat[1] - Areas[2].lat[0]) + Areas[2].lat[0];
+              break;
+            case 4:
+              x = Math.random() * (Areas[3].lng[1] - Areas[3].lng[0]) + Areas[3].lng[0];
+              y = Math.random() * (Areas[3].lat[1] - Areas[3].lat[0]) + Areas[3].lat[0];
+              break;
+            case 5:
+              x = Math.random() * (Areas[4].lng[1] - Areas[4].lng[0]) + Areas[4].lng[0];
+              y = Math.random() * (Areas[4].lat[1] - Areas[4].lat[0]) + Areas[4].lat[0];
+              break;
+            case 6:
+              x = Math.random() * (Areas[5].lng[1] - Areas[5].lng[0]) + Areas[5].lng[0];
+              y = Math.random() * (Areas[5].lat[1] - Areas[5].lat[0]) + Areas[5].lat[0];
+              break;
+            default:
+              break;
+          }
+          L.marker([y, x]).addTo(map).bindPopup(post.content);
+        });
+      }
+    }
+    // マーカーを追加
+    dropMarkers();
     
     //クリックイベント
     map.on('click', function(e) {
