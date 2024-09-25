@@ -19,10 +19,10 @@ export default async function Post() {
         <div>
           <LeafletMap />
         </div>
-        {/* <div className="">
-          <SelectButton />
-          <SelectButtonSample />
-        </div> */}
+        <div className="">
+          {/* <SelectButton /> */}
+          {/* <SelectButtonSample /> */}
+        </div>
         <Box>
           <Suspense fallback={<div>Loading...</div>}>
             <PostForm />
