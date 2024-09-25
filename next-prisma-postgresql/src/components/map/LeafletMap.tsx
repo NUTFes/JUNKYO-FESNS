@@ -8,7 +8,15 @@ import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
+import { Areas } from '@/constant/Area';
 
+type Post = {
+  id: number;
+  content: string;
+  user_id: number;
+  area_id: number;
+  created_at: Date;
+};
 
 // ここでSWRを使ってデータを取得している
 const usePostSwr = () => {
@@ -70,6 +78,56 @@ export default function LeafletMap() {
       marker.bindPopup(postText(),{autoClose:false}).openPopup();
     }
     map.on('click', onMapClick);
+    
+    // 投稿コンテンツをマーカーとして追加する
+    function dropMarkers(){
+      if(data && data.length > 0){
+        let x = Math.random() * 100;
+        let y = Math.random() * 100;
+        data.map((post: Post) => {
+          switch(post.area_id){
+            case 1:
+              x = Math.random() * (Areas[0].lng[1] - Areas[0].lng[0]) + Areas[0].lng[0];
+              y = Math.random() * (Areas[0].lat[1] - Areas[0].lat[0]) + Areas[0].lat[0];
+              break;
+            case 2:
+              x = Math.random() * (Areas[1].lng[1] - Areas[1].lng[0]) + Areas[1].lng[0];
+              y = Math.random() * (Areas[1].lat[1] - Areas[1].lat[0]) + Areas[1].lat[0];
+              break;
+            case 3:
+              x = Math.random() * (Areas[2].lng[1] - Areas[2].lng[0]) + Areas[2].lng[0];
+              y = Math.random() * (Areas[2].lat[1] - Areas[2].lat[0]) + Areas[2].lat[0];
+              break;
+            case 4:
+              x = Math.random() * (Areas[3].lng[1] - Areas[3].lng[0]) + Areas[3].lng[0];
+              y = Math.random() * (Areas[3].lat[1] - Areas[3].lat[0]) + Areas[3].lat[0];
+              break;
+            case 5:
+              x = Math.random() * (Areas[4].lng[1] - Areas[4].lng[0]) + Areas[4].lng[0];
+              y = Math.random() * (Areas[4].lat[1] - Areas[4].lat[0]) + Areas[4].lat[0];
+              break;
+            case 6:
+              x = Math.random() * (Areas[5].lng[1] - Areas[5].lng[0]) + Areas[5].lng[0];
+              y = Math.random() * (Areas[5].lat[1] - Areas[5].lat[0]) + Areas[5].lat[0];
+              break;
+            default:
+              break;
+          }
+          L.marker([y, x]).addTo(map).bindPopup(post.content);
+        });
+      }
+    }
+    // マーカーを追加
+    dropMarkers();
+    
+    //クリックイベント
+    map.on('click', function(e) {
+        //クリック位置経緯度取得
+        const lat = e.latlng.lat;
+        const lng = e.latlng.lng;
+        //経緯度表示
+        alert("lat: " + lat + ", lng: " + lng);
+    } );
 
     return () => {
       // マップのクリーンアップ
