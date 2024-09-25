@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from 'react';
 import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
 
@@ -11,20 +13,23 @@ export default function SelectButton() {
 
   return (
     <FormControl fullWidth>
-      <InputLabel id="select-label">選択してください</InputLabel>
+      <InputLabel id="select-label">エリアを選択してください</InputLabel>
       <Select
         labelId="select-label"
         id="select"
         value={selectedValue}
-        label="選択してください"
+        label="エリア選択"
         onChange={handleChange}
       >
         <MenuItem value="">
           <em>None</em>
         </MenuItem>
-        <MenuItem value={10}>Option 1</MenuItem>
-        <MenuItem value={20}>Option 2</MenuItem>
-        <MenuItem value={30}>Option 3</MenuItem>
+        <MenuItem value={10}>新講義棟エリア</MenuItem>
+        <MenuItem value={20}>事務棟エリア</MenuItem>
+        <MenuItem value={30}>図書館棟エリア</MenuItem>
+        <MenuItem value={40}>電気棟エリア</MenuItem>
+        <MenuItem value={50}>屋外ステージエリア</MenuItem>
+        <MenuItem value={60}>機械建設棟エリア</MenuItem>
       </Select>
     </FormControl>
   );
