@@ -4,9 +4,14 @@ import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import React from "react";
 import "./sample.css";
+// import { Card, CardContent, Select, MenuItem } from "@mui/material";
+import { Select, MenuItem } from "@mui/material";
+// import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
+import { Areas } from '@/constant/Area';
 
 type Post = {
   content: string;
+  area_id: number;
 };
 
 export default function PostForm() {
@@ -49,6 +54,25 @@ export default function PostForm() {
               placeholder=" フェス、たのしんでる？"
               {...register("content", { required: true })}//inoutタグから情報取得
             />
+            <Select
+              {...register("area_id", { required: true })}
+            >
+              {/* <MenuItem value="">
+                <em>None</em>
+              </MenuItem> */}
+              {Areas.map((area) => {
+                return (
+                  <MenuItem key={area.id} value={area.id}>
+                    {area.name}
+                  </MenuItem>)
+              })}
+            </Select>
+            {/* <Button variant="contained" type="submit" disabled={!isValid}>
+              Contained
+            </Button>
+          </Stack>
+        </CardContent>
+      </Card> */}
           </div>
         </div>
         <div>
