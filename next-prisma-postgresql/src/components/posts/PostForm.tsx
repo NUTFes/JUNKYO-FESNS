@@ -6,9 +6,9 @@ import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
 import { useState } from 'react';
-import { Card, CardContent, Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from "@mui/material";
+import { Card, CardContent, Select, MenuItem, FormControl, InputLabel } from "@mui/material";
 // import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
-import { Areas } from '@/constant/area';
+import { Areas } from '@/constant/Area';
 
 type Post = {
   content: string;
@@ -22,13 +22,6 @@ export default function PostForm() {
     reset,
     formState: { isValid },
   } = useForm<Post>();
-
-  const [selectedValue, setSelectedValue] = useState<string>('');
-
-  // SelectChangeEvent 型を使用
-  const handleChange = (event: SelectChangeEvent<string>) => {
-    setSelectedValue(event.target.value);
-  };
 
   const onSubmit = async (data: Post) => {
     const response = await fetch("/api/posts", {
@@ -63,29 +56,20 @@ export default function PostForm() {
               label="本文"
               variant="outlined"
               {...register("content", { required: true })}
-              // {...register("area_id", { required: true })}
             />
-            <FormControl fullWidth>
-              <InputLabel id="select-label">エリアを選択してください</InputLabel>
-              <Select
-                labelId="select-label"
-                id="select"
-                value={selectedValue}
-                label="エリア選択"
-                onChange={handleChange}
-              >
-
-              <MenuItem value="">
+            <Select
+              {...register("area_id", { required: true })}
+            >
+              {/* <MenuItem value="">
                 <em>None</em>
-              </MenuItem>
-                {Areas.map((area) => {
-                  return (
-                    <MenuItem value={area.id}>
-                      {area.name}
-                    </MenuItem>)
-                })}
-              </Select>
-            </FormControl>
+              </MenuItem> */}
+              {Areas.map((area) => {
+                return (
+                  <MenuItem key={area.id} value={area.id}>
+                    {area.name}
+                  </MenuItem>)
+              })}
+            </Select>
             <Button variant="contained" type="submit" disabled={!isValid}>
               Contained
             </Button>
