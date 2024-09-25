@@ -9,6 +9,7 @@ import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
 import { Areas } from '@/constant/Area';
+import "./LeafletPopup.css";
 
 type Post = {
   id: number;
@@ -113,7 +114,8 @@ export default function LeafletMap() {
             default:
               break;
           }
-          L.marker([y, x]).addTo(map).bindPopup(post.content);
+          L.marker([y, x]).addTo(map).bindPopup(
+            post.content, {autoClose:false} ).openPopup();
         });
       }
     }
