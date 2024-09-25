@@ -41,43 +41,43 @@ export default function PostForm() {
   return (
     <Box
       component="form"
-      sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
+      //sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <Card>
-        <CardContent>
-          <Stack spacing={2}>
-            {/* <TextField
+
+      {/* <TextField
               id="content"
               label="コメント"
               variant="outlined"
 
               {...register("content", { required: true })}
             /> */}
-            <div className="box">
-              <div className="comment-main">
-                <input
-                  id="content"
-                  className="rectangle"
-                  placeholder=" フェス、たのしんでる？"
-                  {...register("content", { required: true })}//inoutタグから情報取得
-                />
-              </div>
-            </div>
-            {/* <Button variant="contained" type="submit" disabled={!isValid}> */}
-            {/* Contained */}
-            {/* </Button> */}
+      <div className="post-flex">
+        <div className="box">
+          <div className="comment-main">
+            <input
+              id="content"
+              className="rectangle"
+              placeholder=" フェス、たのしんでる？"
+              {...register("content", { required: true })}//inoutタグから情報取得
+            />
+          </div>
+        </div>
+        <div>
+          <input className="button" type="image" src="/images/icon_full.svg"></input>
+        </div>
 
-            <div>
-              <input className="button" type="image" src="/images/icon_full.svg"></input>
-            </div>
+      </div>
+      {/* <Button variant="contained" type="submit" disabled={!isValid}> */}
+      {/* Contained */}
+      {/* </Button> */}
 
 
-          </Stack>
-        </CardContent>
-      </Card>
+
+
+
     </Box>
   );
 }

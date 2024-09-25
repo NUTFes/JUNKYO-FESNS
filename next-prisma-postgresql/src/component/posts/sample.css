@@ -1,6 +1,6 @@
 .box {
     height: 57px;
-    width: 73%;
+    width: 100%;
 }
 
 .box .comment-main {
@@ -8,9 +8,8 @@
     border-radius: 20px;
     height: 57px;
     left: 0;
-    position: fixed;
     top: 0;
-    width: 70%;
+    width: 100%;
     margin: 10px;
 
 }
@@ -24,19 +23,23 @@ input::placeholder {
     background-color: #ffffff;
     border-radius: 30px;
     height: 49px;
-    position: relative;
     width: 98%;
     margin: 3px;
 }
 
 .button {
     margin: 10px;
-    width: 15%;
-    height: 15%;
+    margin-left: 20px;
+    width: 70%;
+    height: 70%;
+
 }
 
 .post-flex {
 
     display: flex;
+    margin-left: 5%;
+    margin-right: 5%;
+
 
 }
