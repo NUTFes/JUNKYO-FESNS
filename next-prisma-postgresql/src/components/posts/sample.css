@@ -37,6 +37,8 @@ input::placeholder {
 
 .post-flex {
 
+    width: 70vw;
+    justify-content: center;
     display: flex;
     margin-left: 5%;
     margin-right: 5%;
