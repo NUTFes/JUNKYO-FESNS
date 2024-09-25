@@ -1,6 +1,6 @@
 import PostForm from "@/components/posts/PostForm";
 import PostList from "@/components/posts/PostList";
-import SelectButton from '@/components/bottons/SelectBotton';
+// import SelectButton from '@/components/bottons/SelectBotton';
 import { Box } from "@mui/material";
 import { Suspense } from "react";
 import dynamic from 'next/dynamic';
@@ -18,9 +18,9 @@ export default async function Post() {
         <div>
           <LeafletMap />
         </div>
-        <div>
+        {/* <div>
           <SelectButton />
-        </div>
+        </div> */}
         <Box>
           <Suspense fallback={<div>Loading...</div>}>
             <PostForm />

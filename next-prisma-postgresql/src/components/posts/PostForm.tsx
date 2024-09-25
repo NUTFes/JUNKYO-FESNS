@@ -5,10 +5,13 @@ import TextField from "@mui/material/TextField";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { useForm } from "react-hook-form";
-import { Card, CardContent } from "@mui/material";
+import { Card, CardContent, Select, MenuItem } from "@mui/material";
+// import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
+import { Areas } from '@/constant/Area';
 
 type Post = {
   content: string;
+  area_id: number;
 };
 
 export default function PostForm() {
@@ -53,6 +56,19 @@ export default function PostForm() {
               variant="outlined"
               {...register("content", { required: true })}
             />
+            <Select
+              {...register("area_id", { required: true })}
+            >
+              {/* <MenuItem value="">
+                <em>None</em>
+              </MenuItem> */}
+              {Areas.map((area) => {
+                return (
+                  <MenuItem key={area.id} value={area.id}>
+                    {area.name}
+                  </MenuItem>)
+              })}
+            </Select>
             <Button variant="contained" type="submit" disabled={!isValid}>
               Contained
             </Button>
