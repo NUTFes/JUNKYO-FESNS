@@ -46,12 +46,12 @@ export default function LeafletMap() {
     const DefaultIcon = L.icon({
       iconUrl: icon.src,
       iconRetinaUrl: iconRetina.src,
-      shadowUrl: iconShadow.src,
+      // shadowUrl: iconShadow.src,
       iconSize: [25, 41],
       iconAnchor: [12, 41],
       popupAnchor: [1, -34],
       tooltipAnchor: [16, -28],
-      shadowSize: [41, 41]
+      // shadowSize: [41, 41]
     });
     L.Marker.prototype.options.icon = DefaultIcon;
 
@@ -114,8 +114,9 @@ export default function LeafletMap() {
             default:
               break;
           }
-          L.marker([y, x]).addTo(map).bindPopup(
-            post.content, {autoClose:false} ).openPopup();
+          // L.marker([y, x]).addTo(map).bindPopup(
+          //   post.content, {autoClose:false} ).openPopup();
+          L.popup({autoClose:false}).setLatLng([y, x]).setContent(post.content).openOn(map);
         });
       }
     }
