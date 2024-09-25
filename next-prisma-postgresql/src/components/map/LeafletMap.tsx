@@ -8,6 +8,7 @@ import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
+import { Areas } from '@/constant/Area';
 
 type Post = {
   id: number;
@@ -28,45 +29,6 @@ const usePostSwr = () => {
     isError: error,
   };
 };
-// エリアの座標配列
-const Areas = [
-  {
-    id: 1,
-    name: "新講義棟エリア",
-    lat: [700, 1000],
-    lng: [270, 640],
-  },
-  {
-    id: 2,
-    name: "事務棟エリア",
-    lat: [700, 1000],
-    lng: [680, 930],
-  },
-  {
-    id: 3,
-    name: "図書館棟エリア",
-    lat: [700, 1000],
-    lng: [970, 1220],
-  },
-  {
-    id: 4,
-    name: "電気棟エリア",
-    lat: [700, 1100],
-    lng: [1270, 1500],
-  },
-  {
-    id: 5,
-    name: "屋外ステージエリア",
-    lat: [840, 1240],
-    lng: [1560, 1880],
-  },
-  {
-    id: 6,
-    name: "機械建設棟エリア",
-    lat: [1160, 1320],
-    lng: [1930, 2100],
-  },
-];
 
 
 export default function LeafletMap() {
