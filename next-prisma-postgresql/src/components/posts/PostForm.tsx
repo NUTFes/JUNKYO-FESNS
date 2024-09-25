@@ -5,14 +5,24 @@ import { useForm } from "react-hook-form";
 import React from "react";
 import "./sample.css";
 // import { Card, CardContent, Select, MenuItem } from "@mui/material";
-import { Select, MenuItem } from "@mui/material";
-// import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
+import { Select, MenuItem, styled } from "@mui/material";
+// // import { Select, MenuItem, FormControl, InputLabel, SelectChangeEvent } from '@mui/material';
 import { Areas } from '@/constant/Area';
+// import SelectButtonSample from '@/components/bottons/Select-sample';
 
 type Post = {
   content: string;
   area_id: number;
 };
+
+const CustomSelect = styled(Select)({
+  backgroundColor: "#ff7f56",
+  color: "white",
+  borderRadius: "5px",
+  height: "42px",
+  width: "169px",
+  margin: "5px",
+});
 
 export default function PostForm() {
   const {
@@ -45,8 +55,20 @@ export default function PostForm() {
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div className="post-flex">
+      <div className="post-title">
+        <CustomSelect
+          {...register("area_id", { required: true })}
+          defaultValue={1}
+        >
+          {Areas.map((area) => {
+            return (
+              <MenuItem key={area.id} value={area.id}>
+                {area.name}
+              </MenuItem>)
+          })}
+        </CustomSelect>
         <div className="box">
+        <div className="post-flex">
           <div className="comment-main">
             <input
               id="content"
@@ -54,31 +76,13 @@ export default function PostForm() {
               placeholder=" フェス、たのしんでる？"
               {...register("content", { required: true })}//inoutタグから情報取得
             />
-            <Select
-              {...register("area_id", { required: true })}
-            >
-              {/* <MenuItem value="">
-                <em>None</em>
-              </MenuItem> */}
-              {Areas.map((area) => {
-                return (
-                  <MenuItem key={area.id} value={area.id}>
-                    {area.name}
-                  </MenuItem>)
-              })}
-            </Select>
-            {/* <Button variant="contained" type="submit" disabled={!isValid}>
-              Contained
-            </Button>
-          </Stack>
-        </CardContent>
-      </Card> */}
+          </div>
+          <div>
+            <input className="button" type="image" src="/images/icon_full.svg" disabled={!isValid}></input>
           </div>
         </div>
-        <div>
-          <input className="button" type="image" src="/images/icon_full.svg" disabled={!isValid}></input>
-        </div>
       </div>
+    </div>
     </Box>
   );
 }
