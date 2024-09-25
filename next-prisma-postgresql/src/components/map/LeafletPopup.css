@@ -1,0 +1,29 @@
+/* ポップアップの背景とボーダーの変更 */
+.leaflet-popup {
+  background-color: #cd4930;  /* 背景色 */
+  border-radius: 20px;         /* 角を丸くする */
+  
+}
+
+/* ポップアップ内のコンテンツのフォントや色を変更 */
+.leaflet-popup-content {
+  font-family: Arial, sans-serif;   /* フォント */
+  color: white;                      /* テキストの色 */
+  font-weight: bold;
+  font-size: 1.2em;
+}
+
+.leaflet-popup-content-wrapper {
+  background-color: #cd4930;
+  color: white;
+  border-radius: 20px;
+  box-shadow: 0 0 0 0;
+}
+/* 吹き出しの矢印のスタイルを変更 */
+.leaflet-popup-tip {
+  background-color: #cd4930;  /* 吹き出しの矢印の背景色 */
+  box-shadow: 0 0 0 0;
+}
+.leaflet-popup-close-button > span{
+  color: white;
+}
