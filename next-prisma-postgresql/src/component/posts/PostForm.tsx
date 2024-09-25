@@ -16,13 +16,13 @@ export default function PostForm() {
     reset,
     formState: { isValid },
   } = useForm<Post>();
-
   const onSubmit = async (data: Post) => {
     const response = await fetch("/api/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
+
       body: JSON.stringify(data),
     });
 
@@ -33,23 +33,13 @@ export default function PostForm() {
     }
     reset();
   };
-
   return (
     <Box
       component="form"
-      //sx={{ "& > :not(style)": { m: 1, width: "25ch" } }}
       noValidate
       autoComplete="off"
       onSubmit={handleSubmit(onSubmit)}
     >
-
-      {/* <TextField
-              id="content"
-              label="コメント"
-              variant="outlined"
-
-              {...register("content", { required: true })}
-            /> */}
       <div className="post-flex">
         <div className="box">
           <div className="comment-main">
@@ -62,18 +52,9 @@ export default function PostForm() {
           </div>
         </div>
         <div>
-          <input className="button" type="image" src="/images/icon_full.svg"></input>
+          <input className="button" type="image" src="/images/icon_full.svg" disabled={!isValid}></input>
         </div>
-
       </div>
-      {/* <Button variant="contained" type="submit" disabled={!isValid}> */}
-      {/* Contained */}
-      {/* </Button> */}
-
-
-
-
-
     </Box>
   );
 }
