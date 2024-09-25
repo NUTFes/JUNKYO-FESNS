@@ -61,21 +61,21 @@ export default function LeafletMap() {
     // マップの表示範囲を画像サイズに合わせる
     map.fitBounds(imageBounds);
     
-    function postText(){
-      // console.log(data);
-      if (isLoading) return "Loading";
-      if (isError) return "Error";
-      console.log(data);
-      if (data && data.length > 0) return data[0].content;
-      return "No Posts";
-    }
+    // function postText(){
+    //   // console.log(data);
+    //   if (isLoading) return "Loading";
+    //   if (isError) return "Error";
+    //   console.log(data);
+    //   if (data && data.length > 0) return data[0].content;
+    //   return "No Posts";
+    // }
 
     let marker;
-    function onMapClick(e: LeafletMouseEvent) {
-      marker = L.marker(e.latlng).addTo(map);
-      marker.bindPopup(postText(),{autoClose:false}).openPopup();
-    }
-    map.on('click', onMapClick);
+    // function onMapClick(e: LeafletMouseEvent) {
+    //   marker = L.marker(e.latlng).addTo(map);
+    //   marker.bindPopup(postText(),{autoClose:false}).openPopup();
+    // }
+    // map.on('click', onMapClick);
     
     // 投稿コンテンツをマーカーとして追加する
     function dropMarkers(){
@@ -113,7 +113,7 @@ export default function LeafletMap() {
           }
           // L.marker([y, x]).addTo(map).bindPopup(
           //   post.content, {autoClose:false} ).openPopup();
-          L.popup({autoClose:false}).setLatLng([y, x]).setContent(post.content).openOn(map);
+          L.popup({autoClose:false, closeOnClick: false}).setLatLng([y, x]).setContent(post.content).openOn(map);
         });
       }
     }
@@ -121,13 +121,13 @@ export default function LeafletMap() {
     dropMarkers();
     
     //クリックイベント
-    map.on('click', function(e) {
-        //クリック位置経緯度取得
-        const lat = e.latlng.lat;
-        const lng = e.latlng.lng;
-        //経緯度表示
-        alert("lat: " + lat + ", lng: " + lng);
-    } );
+    // map.on('click', function(e) {
+    //     //クリック位置経緯度取得
+    //     const lat = e.latlng.lat;
+    //     const lng = e.latlng.lng;
+    //     //経緯度表示
+    //     alert("lat: " + lat + ", lng: " + lng);
+    // } );
 
     return () => {
       // マップのクリーンアップ
