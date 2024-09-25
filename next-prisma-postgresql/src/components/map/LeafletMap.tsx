@@ -5,7 +5,6 @@ import L, { LeafletMouseEvent } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import icon from "leaflet/dist/images/marker-icon.png";
 import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
-import iconShadow from "leaflet/dist/images/marker-shadow.png";
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
 import { Areas } from '@/constant/Area';
