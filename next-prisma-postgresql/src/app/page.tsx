@@ -1,6 +1,6 @@
 import PostForm from "@/components/posts/PostForm";
-import { Box } from "@mui/material";
-import { Suspense } from "react";
+// import { Box } from "@mui/material";
+// import { Suspense } from "react";
 import dynamic from 'next/dynamic';
 
 // LeafletMapはクライアントサイドのみでレンダリングされるように設定

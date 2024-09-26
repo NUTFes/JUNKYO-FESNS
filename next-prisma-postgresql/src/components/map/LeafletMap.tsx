@@ -34,12 +34,12 @@ export default function LeafletMap() {
   
   //useCallback使った方よくね？
   useEffect(() => {
-    let windowHeight = window.innerHeight;  // ウィンドウの高さを取得
-    let imageHeight = 1629;  // 画像の高さを設定
-    let imageWidth = 2403;  // 画像の幅を設定
-    let aspectRatio = imageWidth / imageHeight;  // 画像のアスペクト比を計算
-    let widthRatio = (windowHeight * 2 * aspectRatio) / imageWidth;  // ウィンドウサイズに合わせて変更された画像の幅と元の画像の幅の比率を計算
-    let heightRatio = (windowHeight * 2) / imageHeight;  // ウィンドウサイズに合わせて変更された画像の高さと元の画像の高さの比率を計算
+    const windowHeight = window.innerHeight;  // ウィンドウの高さを取得
+    const imageHeight = 1629;  // 画像の高さを設定
+    const imageWidth = 2403;  // 画像の幅を設定
+    const aspectRatio = imageWidth / imageHeight;  // 画像のアスペクト比を計算
+    const widthRatio = (windowHeight * 2 * aspectRatio) / imageWidth;  // ウィンドウサイズに合わせて変更された画像の幅と元の画像の幅の比率を計算
+    const heightRatio = (windowHeight * 2) / imageHeight;  // ウィンドウサイズに合わせて変更された画像の高さと元の画像の高さの比率を計算
     
     // Leafletマップの初期化
     const map = L.map('map', {
@@ -105,8 +105,7 @@ export default function LeafletMap() {
       // マップのクリーンアップ
       map.remove();
     };
-  }, [data, isLoading, isError, window.innerHeight]);
+  }, [data, isLoading, isError ]);
 
-  // return <div id="map" style={{ height: '500px', width: '1000px' }} />;
   return <div id="map"/>;
 }
