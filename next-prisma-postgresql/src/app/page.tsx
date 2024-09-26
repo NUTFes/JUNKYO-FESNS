@@ -35,9 +35,10 @@ export default function Post() {
         <div
           id="map"
           style={{
-            width: '100vw',
+            width: '100%',
             height: '100vh',
-            whiteSpace: 'nowrap' // 横スクロール可能にするため
+            whiteSpace: 'nowrap', // 横スクロール可能にするため
+            backgroundColor: '#FFEEE1',
           }}
         >
           <LeafletMap />

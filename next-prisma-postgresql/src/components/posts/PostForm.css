@@ -1,8 +1,17 @@
 .post-title {
     z-index: 1000;
     position: fixed;
-    top: 80%;
     left: 0;
+}
+@media (max-height: 640px) {
+    .post-title {
+        bottom: 2%;
+    }
+}
+@media (min-height: 641px) {
+    .post-title {
+        bottom: 5%;
+    }
 }
 .box {
     width: 90%;

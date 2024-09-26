@@ -1,6 +1,6 @@
 "use client"; // クライアントコンポーネントとして指定
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { fetcher } from "@/utils/fetcher";
@@ -31,10 +31,35 @@ const usePostSwr = () => {
 
 export default function LeafletMap() {
   const { data, isLoading, isError } = usePostSwr();  // usePostSwrを呼び出し
+  // ウィンドウの幅と高さを保存するためのstateを定義
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    // リサイズイベントに基づいてウィンドウサイズを更新する関数
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // 初回レンダリング時にウィンドウサイズを取得
+    handleResize();
+
+    // リサイズイベントを監視
+    window.addEventListener('resize', handleResize);
+
+    // クリーンアップ関数（コンポーネントがアンマウントされたときにイベントリスナーを削除）
+    return () => window.removeEventListener('resize', handleResize);
+  }, [ ]);
   
   //useCallback使った方よくね？
   useEffect(() => {
-    const windowHeight = window.innerHeight;  // ウィンドウの高さを取得
+    // const windowHeight = window.innerHeight;  // ウィンドウの高さを取得
+    const windowHeight = windowSize.height;  // ウィンドウの高さを取得
     const imageHeight = 1629;  // 画像の高さを設定
     const imageWidth = 2403;  // 画像の幅を設定
     const aspectRatio = imageWidth / imageHeight;  // 画像のアスペクト比を計算
@@ -105,7 +130,7 @@ export default function LeafletMap() {
       // マップのクリーンアップ
       map.remove();
     };
-  }, [data, isLoading, isError ]);
+  }, [data, isLoading, isError, windowSize.height ]);
 
   return <div id="map"/>;
 }
