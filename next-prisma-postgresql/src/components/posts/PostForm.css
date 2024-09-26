@@ -5,7 +5,7 @@
     left: 0;
 }
 .box {
-    width: 90vw;
+    width: 90%;
 }
 
 .box .comment-main {
@@ -18,9 +18,33 @@
     margin: 10px;
 }
 
+/* .content-wrapper {
+    background-color: #ffffff;
+    border-radius: 30px;
+    height: 49px;
+    width: 98%;
+    margin: 3px;
+} */
+input {
+    padding-left: 10%;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: large;
+    caret-color: #ffac90;
+    outline-color: #ffac90;
+    
+}
 input::placeholder {
+    /* box-sizing: border-box; */
     text-align: center;
+    /* align-self: center; */
     color: #ffac90;
+    font-size: 20px;
+    font-weight: bold;
+    font-size: large;
+    margin-right: 10%;
+    /* margin-left: 10px; */
+    /* margin-inline-start: 10px; */
 }
 
 .box .rectangle {
@@ -28,7 +52,8 @@ input::placeholder {
     border-radius: 30px;
     height: 49px;
     width: 98%;
-    margin: 3px;
+    margin-top: 4px;
+    margin-left: 3px;
 }
 
 .button {

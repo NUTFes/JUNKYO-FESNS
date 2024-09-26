@@ -35,6 +35,8 @@ export default function Post() {
         <div
           id="map"
           style={{
+            // width: '100%',
+            // height: '1000px',
             width: '100vw',
             height: '100vh',
             whiteSpace: 'nowrap' // 横スクロール可能にするため

@@ -69,13 +69,15 @@ export default function PostForm() {
         <div className="box">
           <div className="post-flex">
             <div className="comment-main">
-              <input
-                id="content"
-                className="rectangle"
-                placeholder=" フェス、たのしんでる？"
-                {...register("content", { required: true })}//inoutタグから情報取得
-              />
-            </div>
+              {/* <div className="content-wrapper"> */}
+                <input
+                  id="content"
+                  className="rectangle"
+                  placeholder=" フェス、たのしんでる？"
+                  {...register("content", { required: true })}//inoutタグから情報取得
+                />
+              </div>
+            {/* </div> */}
             <div>
               <input className="button" type="image" src="/images/icon_full.svg" disabled={!isValid}></input>
             </div>
