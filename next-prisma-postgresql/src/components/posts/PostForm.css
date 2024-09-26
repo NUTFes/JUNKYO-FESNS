@@ -18,13 +18,6 @@
     margin: 10px;
 }
 
-/* .content-wrapper {
-    background-color: #ffffff;
-    border-radius: 30px;
-    height: 49px;
-    width: 98%;
-    margin: 3px;
-} */
 input {
     padding-left: 10%;
     font-size: 20px;
@@ -35,16 +28,12 @@ input {
     
 }
 input::placeholder {
-    /* box-sizing: border-box; */
     text-align: center;
-    /* align-self: center; */
     color: #ffac90;
     font-size: 20px;
     font-weight: bold;
     font-size: large;
     margin-right: 10%;
-    /* margin-left: 10px; */
-    /* margin-inline-start: 10px; */
 }
 
 .box .rectangle {
