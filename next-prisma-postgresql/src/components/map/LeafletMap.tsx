@@ -1,6 +1,6 @@
 "use client"; // クライアントコンポーネントとして指定
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { fetcher } from "@/utils/fetcher";
@@ -31,28 +31,53 @@ const usePostSwr = () => {
 
 export default function LeafletMap() {
   const { data, isLoading, isError } = usePostSwr();  // usePostSwrを呼び出し
+  // ウィンドウの幅と高さを保存するためのstateを定義
+  const [windowSize, setWindowSize] = useState({
+    width: 0,
+    height: 0,
+  });
+
+  useEffect(() => {
+    // リサイズイベントに基づいてウィンドウサイズを更新する関数
+    const handleResize = () => {
+      setWindowSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    // 初回レンダリング時にウィンドウサイズを取得
+    handleResize();
+
+    // リサイズイベントを監視
+    window.addEventListener('resize', handleResize);
+
+    // クリーンアップ関数（コンポーネントがアンマウントされたときにイベントリスナーを削除）
+    return () => window.removeEventListener('resize', handleResize);
+  }, [ ]);
   
   //useCallback使った方よくね？
   useEffect(() => {
-    const windowHeight = window.innerHeight;  // ウィンドウの高さを取得
+    // const windowHeight = window.innerHeight;  // ウィンドウの高さを取得
+    const windowHeight = windowSize.height;  // ウィンドウの高さを取得
     const imageHeight = 1629;  // 画像の高さを設定
     const imageWidth = 2403;  // 画像の幅を設定
     const aspectRatio = imageWidth / imageHeight;  // 画像のアスペクト比を計算
-    const widthRatio = (windowHeight * 2 * aspectRatio) / imageWidth;  // ウィンドウサイズに合わせて変更された画像の幅と元の画像の幅の比率を計算
-    const heightRatio = (windowHeight * 2) / imageHeight;  // ウィンドウサイズに合わせて変更された画像の高さと元の画像の高さの比率を計算
+    const widthRatio = (windowHeight * aspectRatio) / imageWidth;  // ウィンドウサイズに合わせて変更された画像の幅と元の画像の幅の比率を計算
+    const heightRatio = windowHeight / imageHeight;  // ウィンドウサイズに合わせて変更された画像の高さと元の画像の高さの比率を計算
     
     // Leafletマップの初期化
     const map = L.map('map', {
       crs: L.CRS.Simple, // カスタムイメージの場合はSimple座標を使用
-      minZoom: -1,
-      maxZoom: -1,
-      maxBounds: [[0, 0], [windowHeight * 2, (windowHeight * 2) * aspectRatio]],  // 縦方向のスクロールを制限
+      minZoom: 0,
+      maxZoom: 0,
+      maxBounds: [[0, 0], [windowHeight, windowHeight * aspectRatio]],  // 縦方向のスクロールを制限
       maxBoundsViscosity: 1.0,  // マップの端に近づくとスクロールが止まるようにする
       zoomControl: false,  // 必要に応じてズームコントロールを無効にする
     });
 
     // 画像のサイズを定義 (幅, 高さ)
-    const imageBounds: L.LatLngBoundsExpression = [[0, 0], [windowHeight * 2, (windowHeight * 2) * aspectRatio ]]; // カスタムイメージのサイズに合わせる
+    const imageBounds: L.LatLngBoundsExpression = [[0, 0], [windowHeight, windowHeight * aspectRatio ]]; // カスタムイメージのサイズに合わせる
 
     // 画像タイルを背景に設定
     L.imageOverlay('/images/map.png', imageBounds).addTo(map);
@@ -105,7 +130,7 @@ export default function LeafletMap() {
       // マップのクリーンアップ
       map.remove();
     };
-  }, [data, isLoading, isError ]);
+  }, [data, isLoading, isError, windowSize.height ]);
 
   return <div id="map"/>;
 }
