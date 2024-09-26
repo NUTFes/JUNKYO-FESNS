@@ -4,13 +4,23 @@ import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import React from "react";
 import "./PostForm.css";
-import { Select, MenuItem } from "@mui/material";
+import { Select, MenuItem, styled } from "@mui/material";
 import { Areas } from '@/constant/Area';
 
 type Post = {
   content: string;
   area_id: number;
 };
+
+const CustomSelect = styled(Select)({
+  backgroundColor: "#ff7f56",
+  color: "white",
+  borderRadius: "10px",
+  height: "42px",
+  width: "169px",
+  marginLeft: "5%",
+  fontWeight: "bold",
+});
 
 export default function PostForm() {
   const {
@@ -44,10 +54,10 @@ export default function PostForm() {
       onSubmit={handleSubmit(onSubmit)}
     >
       <div className="post-title">
-        <Select
-          className = "custom-select"
+        <CustomSelect
           {...register("area_id", { required: true })}
           defaultValue={1}
+          color="primary"
         >
           {Areas.map((area) => {
             return (
@@ -55,7 +65,7 @@ export default function PostForm() {
                 {area.name}
               </MenuItem>)
           })}
-        </Select>
+        </CustomSelect>
         <div className="box">
           <div className="post-flex">
             <div className="comment-main">
