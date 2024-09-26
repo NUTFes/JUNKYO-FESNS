@@ -2,7 +2,7 @@
 
 import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
-import React from "react";
+import React, { useEffect } from "react";
 import "./PostForm.css";
 import { Select, MenuItem, styled } from "@mui/material";
 import { Areas } from '@/constant/Area';
@@ -29,6 +29,11 @@ export default function PostForm() {
     reset,
     formState: { isValid },
   } = useForm<Post>();
+  
+  // 投稿成功, 失敗メッセージの表示を管理するstate
+  const [isVisibleSuccessMessage, setIsVisibleSuccessMessage] = React.useState(false);
+  const [isVisibleFaildMessage, setIsVisibleFaildMessage] = React.useState(false);
+  
   const onSubmit = async (data: Post) => {
     const response = await fetch("/api/posts", {
       method: "POST",
@@ -40,12 +45,23 @@ export default function PostForm() {
     });
 
     if (response.status === 201) {
-      window.alert("投稿しました");
+      // window.alert("投稿しました");
+      setIsVisibleSuccessMessage(true);
     } else {
-      window.alert("投稿に失敗しました");
+      // window.alert("投稿に失敗しました");
+      setIsVisibleFaildMessage(true);
     }
     reset();
   };
+  
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsVisibleSuccessMessage(false);
+      setIsVisibleFaildMessage(false);
+    }, 3000);
+    return () => clearTimeout(timer);
+  } , [isVisibleSuccessMessage, isVisibleFaildMessage]);
+  
   return (
     <Box
       component="form"
@@ -82,6 +98,8 @@ export default function PostForm() {
           </div>
         </div>
       </div>
+      {isVisibleSuccessMessage && <div className={`fade-text ${isVisibleSuccessMessage ? 'fade-out' : 'fade-in'}`}>コメントしたよ!</div>}
+      {isVisibleFaildMessage && <div className={`fade-text ${isVisibleFaildMessage ? 'fade-out' : 'fade-in'}`}>投稿に失敗しました</div>}
     </Box>
   );
 }

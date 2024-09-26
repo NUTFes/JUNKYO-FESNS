@@ -66,3 +66,58 @@ input::placeholder {
     display: flex;
     margin-left: 4%;
 }
+
+/* .success-message {
+    color: #ff7f56;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    top: 10%;
+    left: auto;
+    z-index: 1000;
+    text-align: center;
+    opacity: 1;
+    animation: fadeOut 2s ease-in-out 1s 1 forwards;
+}
+
+.faild-message {
+    color: #ff7f56;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    top: 10%;
+    left: auto;
+    z-index: 1000;
+    text-align: center;
+    animation: fadeOut 2s ease-in-out 1s 1 forwards;
+} */
+@keyframes fadeOut {
+    from {
+    opacity: 1;
+    }
+    to {
+    opacity: 0;
+    }
+}
+.fade-text {
+    /* animation: fadeOut 2s ease-in-out 1s 1 forwards; */
+    color: #ff7f56;
+    font-size: 20px;
+    font-weight: bold;
+    width: 100%;
+    position: fixed;
+    top: 10%;
+    left: auto;
+    z-index: 1000;
+    text-align: center;
+}
+
+.fade-in {
+    opacity: 1;  /* フェードイン時の透明度 */
+}
+
+.fade-out {
+    animation: fadeOut 2s ease-in-out 1s 1 forwards;
+}
