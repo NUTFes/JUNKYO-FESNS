@@ -1,7 +1,10 @@
+"use client"; // クライアントコンポーネントとして指定
+
 import PostForm from "@/components/posts/PostForm";
-// import { Box } from "@mui/material";
-// import { Suspense } from "react";
+import { useState } from 'react';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import './ImageSwitch.css';
 
 // LeafletMapはクライアントサイドのみでレンダリングされるように設定
 const LeafletMap = dynamic(() => import('../components/map/LeafletMap'), {
@@ -9,10 +12,26 @@ const LeafletMap = dynamic(() => import('../components/map/LeafletMap'), {
 });
 
 
-export default async function Post() {
+export default function Post() {
+  const [isStarted, setIsStarted] = useState(false);
+
+  const handleStart = () => {
+    setIsStarted(true);
+  };
+  
   return (
-    // <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      // {/* <main className="flex flex-col gap-8 row-start-2 items-center"></main> */}
+    <div>
+      {!isStarted ? (
+        <div className="title-content">
+          <Image
+            src="/images/title_mobile.png"
+            alt="Default Image"
+            fill
+            className="responsiveImage"
+            onClick={handleStart}
+          />
+        </div>
+      ) : (
         <div
           id="map"
           style={{
@@ -24,25 +43,7 @@ export default async function Post() {
           <LeafletMap />
           <PostForm />
         </div>
-        // <div className="flex flex-col gap-8 row-start-2 items-center">
-        //   <Box>
-        //     <Suspense fallback={<div>Loading...</div>}>
-        //       <PostForm />
-        //     </Suspense>
-        //   </Box>
-        // </div>
-    // </div>
-    // <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-    //   <main className="flex flex-col gap-8 row-start-2 items-center">
-    //     <div>
-    //       <LeafletMap />
-    //     </div>
-    //     <Box>
-    //       <Suspense fallback={<div>Loading...</div>}>
-    //         <PostForm />
-    //       </Suspense>
-    //     </Box>
-    //   </main>
-    // </div>
+      )}
+    </div>
   );
 }
