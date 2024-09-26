@@ -18,6 +18,9 @@
   }
 }
 
+.map {
+  overflow: hidden;
+}
 /* @media (min-width: 1201px) {
   .responsiveImage {
     content: url('/images/desktop-image.jpg');
