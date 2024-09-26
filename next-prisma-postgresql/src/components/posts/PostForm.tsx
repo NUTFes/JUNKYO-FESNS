@@ -3,7 +3,7 @@
 import Box from "@mui/material/Box";
 import { useForm } from "react-hook-form";
 import React from "react";
-import "./sample.css";
+import "./PostForm.css";
 import { Select, MenuItem, styled } from "@mui/material";
 import { Areas } from '@/constant/Area';
 
@@ -15,10 +15,11 @@ type Post = {
 const CustomSelect = styled(Select)({
   backgroundColor: "#ff7f56",
   color: "white",
-  borderRadius: "5px",
+  borderRadius: "10px",
   height: "42px",
   width: "169px",
-  margin: "5px",
+  marginLeft: "5%",
+  fontWeight: "bold",
 });
 
 export default function PostForm() {
@@ -56,6 +57,7 @@ export default function PostForm() {
         <CustomSelect
           {...register("area_id", { required: true })}
           defaultValue={1}
+          color="primary"
         >
           {Areas.map((area) => {
             return (
@@ -65,21 +67,21 @@ export default function PostForm() {
           })}
         </CustomSelect>
         <div className="box">
-        <div className="post-flex">
-          <div className="comment-main">
-            <input
-              id="content"
-              className="rectangle"
-              placeholder=" フェス、たのしんでる？"
-              {...register("content", { required: true })}//inoutタグから情報取得
-            />
-          </div>
-          <div>
-            <input className="button" type="image" src="/images/icon_full.svg" disabled={!isValid}></input>
+          <div className="post-flex">
+            <div className="comment-main">
+              <input
+                id="content"
+                className="rectangle"
+                placeholder=" フェス、たのしんでる？"
+                {...register("content", { required: true })}//inoutタグから情報取得
+              />
+            </div>
+            <div>
+              <input className="button" type="image" src="/images/icon_full.svg" disabled={!isValid}></input>
+            </div>
           </div>
         </div>
       </div>
-    </div>
     </Box>
   );
 }

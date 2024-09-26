@@ -1,6 +1,11 @@
+.post-title {
+    z-index: 1000;
+    position: fixed;
+    top: 80%;
+    left: 0;
+}
 .box {
-    height: 57px;
-    width: 100%;
+    width: 90vw;
 }
 
 .box .comment-main {
@@ -9,9 +14,8 @@
     height: 57px;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 90%;
     margin: 10px;
-
 }
 
 input::placeholder {
@@ -29,19 +33,13 @@ input::placeholder {
 
 .button {
     margin: 10px;
-    margin-left: 20px;
     width: 70%;
     height: 70%;
-
 }
 
 .post-flex {
-
-    width: 70vw;
+    width: 95vw;
     justify-content: center;
     display: flex;
-    margin-left: 5%;
-    margin-right: 5%;
-
-
+    margin-left: 4%;
 }

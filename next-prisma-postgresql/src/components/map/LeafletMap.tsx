@@ -3,8 +3,6 @@
 import { useEffect } from 'react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import icon from "leaflet/dist/images/marker-icon.png";
-import iconRetina from "leaflet/dist/images/marker-icon-2x.png";
 import { fetcher } from "@/utils/fetcher";
 import useSWR from "swr";
 import { Areas } from '@/constant/Area';
@@ -36,24 +34,25 @@ export default function LeafletMap() {
   
   //useCallback使った方よくね？
   useEffect(() => {
+    const windowHeight = window.innerHeight;  // ウィンドウの高さを取得
+    const imageHeight = 1629;  // 画像の高さを設定
+    const imageWidth = 2403;  // 画像の幅を設定
+    const aspectRatio = imageWidth / imageHeight;  // 画像のアスペクト比を計算
+    const widthRatio = (windowHeight * 2 * aspectRatio) / imageWidth;  // ウィンドウサイズに合わせて変更された画像の幅と元の画像の幅の比率を計算
+    const heightRatio = (windowHeight * 2) / imageHeight;  // ウィンドウサイズに合わせて変更された画像の高さと元の画像の高さの比率を計算
+    
     // Leafletマップの初期化
     const map = L.map('map', {
       crs: L.CRS.Simple, // カスタムイメージの場合はSimple座標を使用
       minZoom: -1,
-      maxZoom: 1,
+      maxZoom: -1,
+      maxBounds: [[0, 0], [windowHeight * 2, (windowHeight * 2) * aspectRatio]],  // 縦方向のスクロールを制限
+      maxBoundsViscosity: 1.0,  // マップの端に近づくとスクロールが止まるようにする
+      zoomControl: false,  // 必要に応じてズームコントロールを無効にする
     });
-    const DefaultIcon = L.icon({
-      iconUrl: icon.src,
-      iconRetinaUrl: iconRetina.src,
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
-      popupAnchor: [1, -34],
-      tooltipAnchor: [16, -28],
-    });
-    L.Marker.prototype.options.icon = DefaultIcon;
 
     // 画像のサイズを定義 (幅, 高さ)
-    const imageBounds: L.LatLngBoundsExpression = [[0, 0], [1629, 2403]]; // カスタムイメージのサイズに合わせる
+    const imageBounds: L.LatLngBoundsExpression = [[0, 0], [windowHeight * 2, (windowHeight * 2) * aspectRatio ]]; // カスタムイメージのサイズに合わせる
 
     // 画像タイルを背景に設定
     L.imageOverlay('/images/map.png', imageBounds).addTo(map);
@@ -95,7 +94,7 @@ export default function LeafletMap() {
             default:
               break;
           }
-          L.popup({autoClose:false, closeOnClick: false}).setLatLng([y, x]).setContent(post.content).openOn(map);
+          L.popup({autoClose:false, closeOnClick: false}).setLatLng([y * heightRatio, x * widthRatio]).setContent(post.content).openOn(map);
         });
       }
     }
@@ -106,7 +105,7 @@ export default function LeafletMap() {
       // マップのクリーンアップ
       map.remove();
     };
-  }, [data, isLoading, isError]);
+  }, [data, isLoading, isError ]);
 
-  return <div id="map" style={{ height: '500px', width: '1000px' }} />;
+  return <div id="map"/>;
 }
