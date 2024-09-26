@@ -1,5 +1,4 @@
 .box {
-    /* height: 57px; */
     width: 90vw;
     position: fixed;
     top: 85%;
@@ -32,19 +31,15 @@ input::placeholder {
 
 .button {
     margin: 10px;
-    /* margin-left: 20px; */
     width: 70%;
     height: 70%;
-    /* align-self: flex-end; */
 }
 
 .post-flex {
-    /* width: 70vw; */
     width: 95vw;
     justify-content: center;
     display: flex;
     margin-left: 4%;
-    /* margin-right: 5%; */
 }
 .custom-select {
     background-color: #ff7f56;
@@ -52,7 +47,6 @@ input::placeholder {
     border-radius: 5px;
     height: 42px;
     width: 169px;
-    /* margin: 10px; */
     margin-left: 5%;
     z-index: 1000;
     position: fixed;
