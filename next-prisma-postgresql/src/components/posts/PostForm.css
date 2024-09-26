@@ -1,6 +1,10 @@
 .box {
-    height: 57px;
-    width: 100%;
+    /* height: 57px; */
+    width: 90vw;
+    position: fixed;
+    top: 85%;
+    left: 0;
+    z-index: 1000;
 }
 
 .box .comment-main {
@@ -9,9 +13,8 @@
     height: 57px;
     left: 0;
     top: 0;
-    width: 100%;
+    width: 90%;
     margin: 10px;
-
 }
 
 input::placeholder {
@@ -29,19 +32,29 @@ input::placeholder {
 
 .button {
     margin: 10px;
-    margin-left: 20px;
+    /* margin-left: 20px; */
     width: 70%;
     height: 70%;
-
+    /* align-self: flex-end; */
 }
 
 .post-flex {
-
-    width: 70vw;
+    /* width: 70vw; */
+    width: 95vw;
     justify-content: center;
     display: flex;
+    margin-left: 4%;
+    /* margin-right: 5%; */
+}
+.custom-select {
+    background-color: #ff7f56;
+    color: white;
+    border-radius: 5px;
+    height: 42px;
+    width: 169px;
+    /* margin: 10px; */
     margin-left: 5%;
-    margin-right: 5%;
-
-
+    z-index: 1000;
+    position: fixed;
+    top: 80%;
 }
