@@ -1,0 +1,25 @@
+.responsiveImage {
+  display: block;
+  width: 100%;
+}
+
+@media (max-width: 860px) {
+  .responsiveImage {
+    content: url('/images/title_mobile.png');
+    width: 100%;
+  }
+}
+
+/* @media (min-width: 769px) and (max-width: 1200px) { */
+@media (min-width: 861px) {
+  .responsiveImage {
+    content: url('/images/title_desktop.png');
+    width: 100%;
+  }
+}
+
+/* @media (min-width: 1201px) {
+  .responsiveImage {
+    content: url('/images/desktop-image.jpg');
+  }
+} */
