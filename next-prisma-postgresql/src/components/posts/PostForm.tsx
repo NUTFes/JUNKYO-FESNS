@@ -55,7 +55,7 @@ export default function PostForm() {
     >
       <div className="post-title">
         <CustomSelect
-          {...register("area_id", { required: true })}
+          {...register("area_id", { required: true, valueAsNumber: true })}
           defaultValue={1}
           color="primary"
         >
