@@ -28,7 +28,6 @@ services:
      - TZ=Asia/Tokyo
      - POSTGRES_DB=FESNS-db
      - POSTGRES_USER=junkyo
-
      - PGDATA=/var/lib/postgresql/data/pgdata
    ports:
      - 5432:5432
